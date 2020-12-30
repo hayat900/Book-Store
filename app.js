@@ -3,6 +3,8 @@ var app=express();
 var mongoose=require('mongoose');
 var conn1      = mongoose.createConnection('mongodb://localhost/books');
 var conn2     = mongoose.createConnection('mongodb://localhost/categories');
+var conn3     = mongoose.createConnection('mongodb://localhost/book-reviews');
+
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 
@@ -23,10 +25,21 @@ const book=conn1.model("book",new mongoose.Schema({
     category:String,
     cover:String
 }));
+
  const category=conn2.model("category",new mongoose.Schema({
     type:String,
    
-}));                       
+})); 
+const feedback=conn3.model("book-reviews",new mongoose.Schema({
+    Book_Id:String,
+    Firstname:String,
+    Lastname:String,
+    Country:String,
+    Email:String,
+    Rating:Number,
+    Description:String
+}));
+
 app.listen(3000,function(request,response){
    
             console.log("running successfully");
@@ -222,9 +235,50 @@ app.post('/addcart/:id',function(req,res){
         res.redirect('/addcart');
     });
 })
+//remove cart
 app.get('/cart/remove',function(req,res){
     req.session.destroy();
     res.redirect('/addcart');
+})
+
+//view feedback
+app.get('/reviews/:id',function(req,res){
+    feedback.find({Book_Id:req.params.id},function(err,reviews)
+                  {
+        console.log(reviews);
+        //res.send("hello");
+                     res.render("showfeedback.ejs",{review:reviews});
+                  }
+                 )
+        .catch(err=>{
+       console.log("err");
+   });
+    })
+//give feedback page
+app.get('/addreviews/:id',function(req,res){
+    res.render("feedback.ejs",{id:req.params.id});
+})
+//post feedback
+app.post("/addreviews",function(req,res){
+     var feedbacks=new feedback({ 
+         Firstname:req.body.Firstname,
+         Lastname:req.body.Lastname,
+         Book_Id:req.body.Book_Id,
+         Description:req.body.Subject,
+         Rating:req.body.Rating,
+         Email:req.body.Email,
+         Country:req.body.Country
+       })                     
+               feedbacks.save(()=>{
+                   console.log('saved');
+                   feedback.find(function(err,info){
+                       if(err)
+                           console.log(err);
+                       else
+                           console.log(info);
+                   })
+                   res.redirect('/');
+               });
 })
 
         

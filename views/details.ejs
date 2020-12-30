@@ -51,7 +51,9 @@
             
             <p>Description:<%=book.description%></p>
             <p>price:<%=book.price%></p>
-         
+          <a href="/reviews/<%=book._id%>" class="btn btn-outline-info" type="button">View Customer Reviews</a>
+            
+            
             <form  action="/addcart/<%=book._id%>" method="post">
             <input type="submit" class="btn btn-outline-success" value="Add to cart">
             </form>
