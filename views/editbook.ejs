@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Add a new book
+    
+    
+    </title>
+ <link src="/public/css/app.css" rel=stylesheet>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+    
+    
+    
+    
+    
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/views/viewbooks.ejs">Books <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/viewcategories.ejs">Categories</a>
+      </li>
+     
+    
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+
+
+<div>
+  <form action="/add_book/<%=books._id%>" method="post">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter the book title" value="<%=books.title%>">
+
+    <label for="author">Author</label>
+    <input type="text" id="author" name="author" placeholder="Enter book author name..." value="<%=books.author%>">
+
+      <label for="price">Price</label>
+    <input type="text" id="price" name="price" placeholder="Enter book price..." value="<%=books.price%>">
+      
+      <label for="cover">Cover URL</label>
+    <input type="text" id="cover" name="cover" placeholder="Enter book cover URL..." value="<%=books.cover%>">
+      
+      <label for="publisher">Publisher</label>
+    <input type="text" id="publisher" name="publisher" placeholder="Enter book publisher..."
+           value="<%=books.publisher%>">
+      
+     
+      
+    <label for="country">Category</label>
+    <select id="country" name="category">
+        <option value="<%=books.category%>"><%=books.category%></option>
+      <% for(var i=0; i < categories.length; i++) { %>
+                       <option value="<%= categories[i].type %>" ><%= categories[i].type %></option>
+                       <% } %>
+    </select>
+     <label for="description">Description</label><br>
+      <textarea  id="description" name="description" placeholder="Enter book description..." rows="6" cols="50" ><%=books.description%></textarea>
+      
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>
