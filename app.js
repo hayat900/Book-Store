@@ -187,11 +187,27 @@ app.delete('/delete_book/:id',function(req,res){
 app.get('/details/:id',function(req,res){
     book.findById(req.params.id,function(err,books)
                   {
-                     res.render("details.ejs",{book:books});
+        feedback.find({Book_Id:req.params.id},function(err,reviews)
+                  {
+        console.log(reviews);
+        //res.send("hello");
+            var total=0;
+            for(var i=0;i<reviews.length;i++)
+                {
+                     total=total+reviews[i].Rating
+                }
+            total=total/reviews.length;
+                     res.render("details.ejs",{book:books,review:reviews,total:total});
                   }
                  )
         .catch(err=>{
-       console.log("err");
+       console.log(err);
+   });
+                     
+                  }
+                 )
+        .catch(err=>{
+       console.log(err);
    });
     })
 
