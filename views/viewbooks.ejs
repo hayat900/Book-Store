@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DASHBOARD</title>
+    <title>Books</title>
    
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -34,7 +34,15 @@
     </form>
   </div>
 </nav>
-        
+    <div class="flashes">
+  <% if (locals.message) { %>
+    <% if (message.success) { %>
+      <div class="alert alert-success"><%= message.success %></div>
+    <% } else if (message.error) { %>
+      <div class="alert alert-danger"><%= message.error %></div>
+    <% } %>
+  <% } %>
+</div>     
     <h2>Books</h2>
         <p><a href="addbook.ejs">Add a New Book</a></p>
       

@@ -16,7 +16,22 @@
             width:200px;
             height:250px;
         }
-    
+    .button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button:hover {
+  background-color: grey;
+}
     
     
     </style>
@@ -45,7 +60,7 @@
             <img src="<%=books[i].cover%>">
                 <h4><%=books[i].name%></h4>
                 <p><%=books[i].description%></p>
-                <div class="price">Buy it for<span><%=books[i].price%></span></div><br>
+                <div class="price">Buy it for <button type="button" class="button"><%=books[i].price%></button></div><br>
                 <a href="/details/<%=books[i]._id%>" class="btn btn-outline-info" type="button">Details</a>
             <br><br><br>
             <a href="/addreviews/<%=books[i]._id%>" class="btn btn-outline-info" type="button">Rate the Book</a>
@@ -57,6 +72,6 @@
         
         
         </div>
-        <center><p><a href="/">manage|@copy;2020</a></p></center>
+        <center><p><a href="/manage">manage|@copy;2020</a></p></center>
     </body>
 </html>

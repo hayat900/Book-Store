@@ -9,12 +9,24 @@
   "author": "Disha",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bootstrap-star-rating": "^4.0.6",
+    "connect-flash": "*",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-flash-messages": "^0.1.1",
+    "express-messages": "*",
     "express-session": "^1.17.1",
+    "express-validator": "^5.3.1",
+    "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
-    "mongoose": "^5.10.13"
+    "mongoose": "^5.10.13",
+    "morgan": "~1.9.1",
+    "multer": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "serve-favicon": "*"
   }
 }

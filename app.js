@@ -3,11 +3,25 @@ var app=express();
 var mongoose=require('mongoose');
 var conn1      = mongoose.createConnection('mongodb://localhost/books');
 var conn2     = mongoose.createConnection('mongodb://localhost/categories');
-var conn3     = mongoose.createConnection('mongodb://localhost/book-reviews');
+var conn3     = mongoose.createConnection('mongodb://localhost/breviews');
 
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
+var createError = require('http-errors');
+var path = require('path');
+var logger = require('morgan');
+var passport = require('passport');
+var expressValidator = require('express-validator');
+var LocalStrategy = require('passport-local').Strategy;
+var multer = require('multer');
+var upload = multer({dest: './uploads'});
+var flash = require('connect-flash');
+mongoose.connect("mongodb://localhost/Mylogin",{useNewUrlParser:true,useUnifiedTopology:true});
 
+var db = mongoose.connection;
+app.use(flash());
+app.use(logger('dev'));
+app.use(express.json());
 var b=require('body-parser');
 app.use(b.urlencoded({extended:true}));
 var mo=require('method-override');
@@ -15,6 +29,38 @@ app.use(cookieParser());
 app.use(session({secret:"Shh,its a secret"}));
 app.use(mo('_method'));
 app.set('view engine', 'ejs'); 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+var Schema=mongoose.Schema
+ var UserSchema=new Schema({
+        email:{type:String,required:true},
+        password:{type:String,required:true},
+     profilepic:{type:String}
+    });
+const Lo=mongoose.model('lo',UserSchema)
+
 
 const book=conn1.model("book",new mongoose.Schema({
     title:String,
@@ -30,7 +76,7 @@ const book=conn1.model("book",new mongoose.Schema({
     type:String,
    
 })); 
-const feedback=conn3.model("book-reviews",new mongoose.Schema({
+const feedback=conn3.model("breviews",new mongoose.Schema({
     Book_Id:String,
     Firstname:String,
     Lastname:String,
@@ -39,7 +85,89 @@ const feedback=conn3.model("book-reviews",new mongoose.Schema({
     Rating:Number,
     Description:String
 }));
+app.get('/register',function(req,res){
+    res.render("register.ejs",{title:"register",errors:''});
+});
+app.post('/register',upload.single('pic'),function(req,res){
+    if(req.file){
+        console.log(req.file);
+            var profilepic=req.file.filename;
+    }
+    else{
+        console.log("no file");
+      var profilepic="no file";
+    }
+    var email=req.body.email;
+    var password1=req.body.password1;
+     var password2=req.body.password2;
+    
+    req.checkBody('email',"enter valid email").isEmail();
+        req.checkBody('password1',"enter same passwords").equals(password2);
+ req.checkBody('password1',"enter a password").notEmpty();
+    var errors=req.validationErrors();
+    console.log(errors);
+        if(errors==true)
+            res.render("register.ejs",{errors:errors,title:"register"});
+        else
+{
+   
+            var lo=new Lo({ 
+                email:req.body.email,
+               password:req.body.password1,
+            profilepic:profilepic
+            })
+               lo.save(()=>{
+                   console.log('saved');
+                 req.flash('success','You have successfully registered and can login');
+                   res.locals.message=req.flash();
+                   res.render('login',{title:"login",errors:"",msg2:""});
+               });
+        }
+});
 
+    
+
+app.get('/login',function(req,res){
+    res.render("login.ejs",{title:"login",errors:"",msg2:""});
+});
+app.post('/login',function(req,res){
+   
+    Lo.findOne({email:req.body.email},function(err,user){
+       if(err){
+           console.log(err);
+       }
+       else if(!user)
+       {
+            req.flash('error','invalid credentials2');
+            res.locals.message=req.flash();
+           res.render('login',{title:"login",msg2:"",errors:""});
+       }
+        else if(user.password!=req.body.password)
+            {
+                console.log(user.password);
+                console.log(req.body.password);
+                 req.flash('error','invalid credentials1');
+            res.locals.message=req.flash();
+               res.render('login',{msg2:' Invalid credentials',title:"login",errors:""}); 
+            }
+        else{
+             req.flash('success','You have successfully logged in');
+                   res.locals.message=req.flash();
+           book.find().then(books=>{
+       
+        res.render("viewbooks.ejs",{books:books})
+    })
+        .catch(err=>{
+       console.log("err");
+   });
+        }
+      
+       });
+   
+})
+app.get('/manage',function(req,res){
+    res.render("index.ejs",{title:"express",message:""});
+});
 app.listen(3000,function(request,response){
    
             console.log("running successfully");
@@ -272,10 +400,17 @@ app.get('/reviews/:id',function(req,res){
     })
 //give feedback page
 app.get('/addreviews/:id',function(req,res){
-    res.render("feedback.ejs",{id:req.params.id});
+    res.render("feedback.ejs",{id:req.params.id,errors:""});
 })
 //post feedback
 app.post("/addreviews",function(req,res){
+    req.checkBody(req.body.Subject,"enter your review").notEmpty();
+    var errors=req.validationErrors();
+    console.log(errors);
+        if(errors==true)
+            res.render("feedback.ejs",{errors:errors,id:req.body.Book_Id});
+        else
+{
      var feedbacks=new feedback({ 
          Firstname:req.body.Firstname,
          Lastname:req.body.Lastname,
@@ -295,6 +430,7 @@ app.post("/addreviews",function(req,res){
                    })
                    res.redirect('/');
                });
+}
 })
 
         
