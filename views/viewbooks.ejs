@@ -8,18 +8,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link src="/public/mycss.css" rel="stylesheet">
+    <style>
+        body{
+             background-color: #0f1228;
+        }
+        th,h2{
+            color:white;
+        }
+        td{
+            color:white;
+        }
+        table{
+            margin-left:10%;
+        }
+        h2{
+            margin-left:40%;
+        }
+        #add{
+            margin-left:10%;
+        }
+    
+    </style>
     </head>
     
     <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+         <li class="nav-item">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/views/viewbooks.ejs">Books <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -30,7 +51,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
@@ -44,9 +65,9 @@
   <% } %>
 </div>     
     <h2>Books</h2>
-        <p><a href="/views/addbook.ejs">Add a New Book</a></p>
+        <p id="add"><a href="/views/addbook.ejs">Add a New Book</a></p>
       
-        <table border="1 solid black">
+        <table border="2 solid white">
         
             <tr>
             <th width="300">ID</th>
