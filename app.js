@@ -66,7 +66,7 @@ const book=conn1.model("book",new mongoose.Schema({
     title:String,
     author:String,
     description:String,
-    price:Number,
+    price:String,
     publisher:String,
     category:String,
     cover:String
@@ -172,6 +172,8 @@ app.listen(3000,function(request,response){
    
             console.log("running successfully");
 })
+
+
 app.get('/',function(req,res){
     
      book.find().then(books=>{
@@ -223,7 +225,7 @@ app.get("/views/addcate.ejs",function(req,res){
 })
 //post a book to add
 app.post("/add_book",function(req,res){
-     var books=new book({ 
+     var book1=new book({ 
          title:req.body.title,
          author:req.body.author,
          category:req.body.category,
@@ -232,9 +234,12 @@ app.post("/add_book",function(req,res){
          publisher:req.body.publisher,
          cover:req.body.cover
        })                     
-               books.save(()=>{
-                   console.log('saved');
-                   res.redirect('/');
+               book1.save(()=>{
+                   console.log('saved book');
+                   book.find().then(books=>{
+                       console.log(books);
+                   });
+                   res.redirect('/views/viewbooks.ejs');
                });
 })
 //post a category to add
@@ -244,11 +249,11 @@ app.post("/add_category",function(req,res){
     })
     categories.save(()=>{
         console.log("saved");
-        res.redirect('/');
+        res.redirect('/views/viewbooks.ejs');
     });
 })
 //edit book
-app.get('/views/editbook.ejs/:id',function(req,res){
+app.get('/editbook.ejs/:id',function(req,res){
     book.findById(req.params.id,function(err,books){
         console.log(books.description);
         console.log(books.category);
@@ -277,7 +282,7 @@ app.get('/editcat.ejs/:id',function(req,res){
 //put a book to edit
 app.post('/add_book/:id',function(req,res){
      book.findByIdAndUpdate(req.params.id,req.body).lean().then(book=>{
-       res.redirect('/');
+       res.redirect('/views/viewbooks.ejs');
 }).catch(err=>{
         console.log(err);
     });
@@ -285,7 +290,7 @@ app.post('/add_book/:id',function(req,res){
 //put a category to edit
 app.post('/add_category/:id',function(req,res){
      category.findByIdAndUpdate(req.params.id,req.body).lean().then(book=>{
-       res.redirect('/');
+       res.redirect('/views/addcate.ejs');
 }).catch(err=>{
         console.log(err);
     });

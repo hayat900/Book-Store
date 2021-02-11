@@ -44,7 +44,7 @@
   <% } %>
 </div>     
     <h2>Books</h2>
-        <p><a href="addbook.ejs">Add a New Book</a></p>
+        <p><a href="/views/addbook.ejs">Add a New Book</a></p>
       
         <table border="1 solid black">
         
@@ -66,7 +66,7 @@
      <td><%= books[i].id %></td>
      <td><%= books[i].title %></td>
        <td><%= books[i].category %></td>
-       <td><a class="button" href="editbook.ejs/<%=books[i]._id%>">Edit</a></td>
+       <td><a class="button" href="/editbook.ejs/<%=books[i]._id%>">Edit</a></td>
        <td><form method="POST" action="/delete_book/<%=books[i]._id%>?_method=DELETE">
     <button type="submit">Delete</button>
 </form>
