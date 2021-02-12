@@ -1,132 +1,164 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home</title>
     <link src="/public/css" rel=stylesheet>
-     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <style>
-        .row{
-            margin-left:5%;
-            
-        }
-        img{
-            width:200px;
-            height:250px;
-        }
-    .button {
-  background-color: #ddd;
-  border: none;
-  color: black;
-  padding: 5px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 16px;
-}
-
-.button:hover {
-  background-color: grey;
-}
-        
-.btn-warning{
-             
-  border: none;
-  color: black;
-  padding: 5px 20px;
-  text-align: center;
-  text-decoration:none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 16px;
-   
-        }
-    .btndetails:hover {
-  background-color:darkorange;
-}
-        .navbar-nav{
-            color:white;
-        }
-        .btnrate{
-            padding:8px 15px;
-    font-size: 15px;
-    width:150px;
-    border-width:0px;
-    background-color: rgb(88, 13, 207);
-    border-radius: 50px;
-    box-shadow: 0 0 5px rgba(255,255,255,0.5);
-            display:flex;
-    justify-content: center;
-            color:white;
-            text-decoration:none;
-             
+        .row {
+            margin-left: 5%;
 
         }
-    .btnrate:hover{
-    background-color: #4a5079;
-    box-shadow: 0 0 5 rgba(255,255,255,0.2);
-        color:white;
- text-decoration:none;
-}
-        body{
-             background-color: #0f1228;
+
+        img {
+            width: 200px;
+            height: 250px;
         }
-        .nav{
-            background-color:black;
-            color:white;
+
+        .button {
+            background-color: #ddd;
+            border: none;
+            color: black;
+            padding: 5px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
         }
-        div{
-            color:white;
+
+        .button:hover {
+            background-color: grey;
         }
-        .nav-item:hover{
-            background-color:grey;
+
+        .btn-warning {
+
+            border: none;
+            color: black;
+            padding: 5px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
+
+        }
+
+        .btndetails:hover {
+            background-color: darkorange;
+        }
+
+        .navbar-nav {
+            color: white;
+        }
+
+        .btnrate {
+            padding: 8px 15px;
+            font-size: 15px;
+            width: 150px;
+            border-width: 0px;
+            background-color: rgb(88, 13, 207);
+            border-radius: 50px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+
+
+        }
+
+        .btnrate:hover {
+            background-color: #4a5079;
+            box-shadow: 0 0 5 rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #0f1228;
+        }
+
+        .nav {
+            background-color: black;
+            color: white;
+        }
+
+        div {
+            color: white;
+        }
+
+        .nav-item:hover {
+            background-color: grey;
         }
     </style>
-    </head>
-    
-    <body>
-       
-  
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- 
- 
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">About</a>
-      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-     
-      <a class="nav-item nav-link active" href="/addcart">Cart</a>
-     
-    </div>
-  </div>
-</nav>
-        <br><br>
-         <div class="row">
-         <% for(var i=0; i < books.length; i++) { %>
-       
-            <div class="col-sm-3">
-            <img src="<%=books[i].cover%>">
-                <h4><%=books[i].name%></h4>
-                <p><%=books[i].description%></p>
-                <div class="price">Buy it for <button type="button" class="button"><%=books[i].price%></button></div><br>
-                <a href="/details/<%=books[i]._id%>" class="btn btn-warning" type="button">Details</a>
-            <br><br>
-            <a href="/addreviews/<%=books[i]._id%>" class="btnrate" type="button">Rate the Book</a>
-            
-            
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">About</a>
+                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+
+                <a class="nav-item nav-link active" href="/addcart">Cart</a>
+
             </div>
-        <% } %>
-        
-        
-        
+
         </div>
-        <br>
-        <center><p><a href="/manage">Managed by Disha|&#169;2021</a></p></center>
-    </body>
+        <form class="form-inline my-2 my-lg-0" action="/categorysearchhome" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" name="category" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <br><br>
+    <div class="row">
+        <% for(var i=0; i < books.length; i++) { %>
+
+            <div class="col-sm-3">
+                <img src="<%=books[i].cover%>">
+                <h4>
+                    <%=books[i].name%>
+                </h4>
+                <p>
+                    <%=books[i].description%>
+                </p>
+                <div class="price">Buy it for <button type="button" class="button">
+                        <%=books[i].price%>
+                    </button></div><br>
+                <a href="/details/<%=books[i]._id%>" class="btn btn-warning" type="button">Details</a>
+                <br><br>
+                <a href="/addreviews/<%=books[i]._id%>" class="btnrate" type="button">Rate the Book</a>
+
+
+            </div>
+            <% } %>
+
+
+
+    </div>
+    <br>
+    <center>
+        <p><a href="/manage">Managed by Disha|&#169;2021</a></p>
+    </center>
+</body>
+
 </html>

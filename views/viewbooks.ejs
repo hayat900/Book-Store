@@ -33,7 +33,7 @@
     }
 
     table {
-      margin-left: 10%;
+      margin-left: 2%;
     }
 
     h2 {
@@ -44,8 +44,39 @@
       margin-left: 10%;
     }
 
-    .edit,
+
     .delete:hover {
+      text-decoration: none;
+    }
+
+    .edit1:hover {
+      text-decoration: none;
+    }
+
+    .btnrate {
+      padding: 8px 15px;
+      font-size: 15px;
+      width: 150px;
+      border-width: 0px;
+      background-color: rgb(88, 13, 207);
+      border-radius: 50px;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      display: flex;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      margin-left: 5%;
+
+    }
+
+    .btnrate:hover {
+      background-color: #5e6eda;
+      box-shadow: 0 0 5 rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+    }
+
+    a {
       text-decoration: none;
     }
   </style>
@@ -71,11 +102,14 @@
         <li class="nav-item">
           <a class="nav-link" href="/views/viewcategories.ejs">Categories</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/addbook.ejs">Add book</a>
+        </li>
 
 
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" action="/categorysearch" method="post">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="category" aria-label="Search">
         <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -94,14 +128,19 @@
             <% } %>
   </div>
   <h2>Books</h2>
-  <p id="add"><a href="/views/addbook.ejs">Add a New Book</a></p>
-
+  <a href="/views/addbook.ejs">
+    <button class="btnrate">Add a new Book</button>
+  </a>
+  <br>
+  <br>
   <table border="2 solid white">
 
     <tr>
       <th width="300">ID</th>
       <th width="200">Book Title</th>
       <th width="200">Category</th>
+      <th width="200">Author</th>
+      <th width="200">Publisher</th>
       <th width="200" colspan=2>Action</th>
 
     </tr>
@@ -122,7 +161,13 @@
         <td>
           <%= books[i].category %>
         </td>
-        <td><a class="edit" href="/editbook.ejs/<%=books[i]._id%>">Edit</a></td>
+        <td>
+          <%= books[i].author %>
+        </td>
+        <td>
+          <%= books[i].publisher %>
+        </td>
+        <td><a class="edit1" href="/editbook.ejs/<%=books[i]._id%>">Edit</a></td>
         <td>
           <form method="POST" action="/delete_book/<%=books[i]._id%>?_method=DELETE" id="myform">
             <a href="/" class="delete" onclick="document.getElementById('myform').submit(); return false;">Delete</a>

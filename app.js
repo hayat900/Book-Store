@@ -164,7 +164,7 @@ app.post('/login', function (req, res) {
 
 })
 app.get('/manage', function (req, res) {
-    res.render("index.ejs", { title: "express", message: "" });
+    res.redirect('/login');
 });
 app.listen(3000, function (request, response) {
 
@@ -431,7 +431,46 @@ app.post("/addreviews", function (req, res) {
             res.redirect('/');
         });
     }
+});
+app.post('/categorysearch', function (req, res) {
+    var given_category = req.body.category;
+    book.find({
+        $or: [{ category: { $regex: new RegExp(given_category, "i") } }
+            , { title: { $regex: new RegExp(given_category, "i") } }
+            , { author: { $regex: new RegExp(given_category, "i") } }
+            , { publisher: { $regex: new RegExp(given_category, "i") } }
+        ]
+    }, function (err, books) {
+        console.log(books);
+        res.render("viewbooks.ejs", { books: books })
+        seen = true;
+    })
+        .catch(err => {
+            console.log("err");
+        })
+
 })
+app.post('/categorysearchhome', function (req, res) {
+    var given_category = req.body.category;
+    book.find({
+        $or: [{ category: { $regex: new RegExp(given_category, "i") } }
+            , { title: { $regex: new RegExp(given_category, "i") } }
+            , { author: { $regex: new RegExp(given_category, "i") } }
+            , { publisher: { $regex: new RegExp(given_category, "i") } }
+        ]
+    }, function (err, books) {
+        console.log(books);
+        res.render("home.ejs", { books: books })
+
+    })
+        .catch(err => {
+            console.log("err");
+        })
+
+})
+
+
+
 
 
 
