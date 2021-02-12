@@ -1,145 +1,233 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <title>YOUR CART</title>     
-<link src="/public/css" rel=stylesheet>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>YOUR CART</title>
+    <link src="/public/css" rel=stylesheet>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <style>
-        .row{
-            margin-left:5%;
-            
+        .row {
+            margin-left: 5%;
+
         }
-        img{
-            width:300px;
-            height:400px;
+
+        img {
+            width: 300px;
+            height: 400px;
         }
-      h2 span
-{
-    font-size:18px;
-    margin-left:60%;
-}
-        .col-lg-6{
-            margin-left:40%;
+
+        h2 span {
+            font-size: 18px;
+            margin-left: 60%;
         }
-    
-    
+
+        .col-lg-6 {
+            margin-left: 40%;
+        }
+
+        body {
+            background-color: #0f1228;
+        }
+
+        th,
+        h2 {
+            color: white;
+        }
+
+        td,
+        th {
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            margin-left: 10%;
+        }
+
+        h2 {
+            margin-left: 40%;
+        }
+
+        #add {
+            margin-left: 10%;
+        }
+
+        .edit,
+        .delete:hover {
+            text-decoration: none;
+        }
+
+        #empty {
+            margin-left: 90%;
+        }
     </style>
-    
-    </head>
+
+</head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link " href="/">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/about">About</a>
-      <a class="nav-item nav-link" href="/addcart">Cart</a>
-     <br>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/views/viewbooks.ejs">Books <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/views/viewcategories.ejs">Categories</a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
     <br>
     <div class="row">
-    <div class="col-lg-12">
-        <h2>Shopping Cart  <span><a href="/cart/remove">Empty cart</a></span></h2>
-         <% if(cart.items.length==0){%>
-        <p>There are no items in the list</p>
-        
-        <%}else{%>
-        <table border="1 solid black">
-        <thead>
-            <tr>
-                <th width="100"><center>SL.NO</center></th>
-                <th width="650"><center>Item</center></th>
-                <th width="100"><center>Quantity</center></th>
-                <th width="100"><center>Total</center></th>
-                
-            
-            
-            </tr>
-            
-            
-            
-            </thead>
-        <tbody>
-           
-            <% for(var i=0; i < cart.items.length; i++) { %>
-           
-            <tr>
-                <td><center><%=i+1%></center></td>
-            <td><center>
-                <a href="/details/<%=cart.items[i].item%>"><%=cart.items[i].title%></a></center>
-                </td>
-                <td><center><%=cart.items[i].qty%></center></td>
-                <td><center><%=cart.items[i].qty*cart.items[i].price%></center></td>
-            
-            
-            
-            </tr>
-           <% } %>
-           
-            </tbody>
-        
-        
-        </table>
-        <br>
-        <table border="1 solid black">
-        <tr>
-            <th width="750">Total</th>
-            <th width="100"><center><%=cart.qty%></center></th>
-            <th width="100"><center><%=cart.total%></center></th>
-            </tr>
-        
-        </table>
-        
-        
+        <div class="col-lg-12">
+            <h2>Shopping Cart</h2>
+            <span id="empty"><a href="/cart/remove">Empty cart</a></span>
+            <% if(cart.items.length==0){%>
+                <p>There are no items in the list</p>
+
+                <%}else{%>
+                    <table border="2 solid white">
+                        <thead>
+                            <tr>
+                                <th width="100">
+                                    <center>SL.NO</center>
+                                </th>
+                                <th width="650">
+                                    <center>Item</center>
+                                </th>
+                                <th width="100">
+                                    <center>Quantity</center>
+                                </th>
+                                <th width="100">
+                                    <center>Total</center>
+                                </th>
+
+
+
+                            </tr>
+
+
+
+                        </thead>
+                        <tbody>
+
+                            <% for(var i=0; i < cart.items.length; i++) { %>
+
+                                <tr>
+                                    <td>
+                                        <center>
+                                            <%=i+1%>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a href="/details/<%=cart.items[i].item%>">
+                                                <%=cart.items[i].title%>
+                                            </a>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <%=cart.items[i].qty%>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <%=cart.items[i].qty*cart.items[i].price%>
+                                        </center>
+                                    </td>
+
+
+
+                                </tr>
+                                <% } %>
+
+                        </tbody>
+
+
+                    </table>
+                    <br>
+                    <table border="2 solid black">
+                        <tr>
+                            <th width="750">Total</th>
+                            <th width="100">
+                                <center>
+                                    <%=cart.qty%>
+                                </center>
+                            </th>
+                            <th width="100">
+                                <center>
+                                    <%=cart.total%>
+                                </center>
+                            </th>
+                        </tr>
+
+                    </table>
+
+
         </div>
-        
-    	<div class="col-lg-6">
+
+        <div class="col-lg-6">
             <br>
-        <br>
-			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-				            	<!-- Specifies Buy Now Button -->
-				                <input type="hidden" name="cmd" value="_xclick">
-				                <!-- PayPal Email -->
-				                <input type="hidden" name="business" value="techguyseller@sandbox.com">
-				                <!-- Item Name -->
-				                <input type="hidden" name="item_name" value="TekBooks Books">
-				                <!-- Item ID -->
-				                <input type="hidden" name="item_number" value="1">
-				                <!-- Currency Code -->
-				                <input type="hidden" name="currency_code" value="USD">
-				                <!-- Price -->
-				                <input type="hidden" name="amount" value="{cart.total}">
-				                <!-- Specify Shipping -->
-				                <input type='hidden' name='no_shipping' value='1'>
-				                <!-- Return method -->
-				                <input type='hidden' name='rm' value='2'>
-				                <!-- Return URL -->
-				                <input type="hidden" name="return" value="http://localhost:3000">
-				                <!-- Cancel Return URL -->
-				                <input type="hidden" name="cancel_return" value="http://localhost:3000">
-				             			           
-				                <!-- Button -->
-				                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_107x26.png" name="submit" alt="Buy Now">
-				            </form> 
-		</div>
-   
-    
-    
-       <%}%>
+            <br>
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <!-- Specifies Buy Now Button -->
+                <input type="hidden" name="cmd" value="_xclick">
+                <!-- PayPal Email -->
+                <input type="hidden" name="business" value="techguyseller@sandbox.com">
+                <!-- Item Name -->
+                <input type="hidden" name="item_name" value="TekBooks Books">
+                <!-- Item ID -->
+                <input type="hidden" name="item_number" value="1">
+                <!-- Currency Code -->
+                <input type="hidden" name="currency_code" value="USD">
+                <!-- Price -->
+                <input type="hidden" name="amount" value="{cart.total}">
+                <!-- Specify Shipping -->
+                <input type='hidden' name='no_shipping' value='1'>
+                <!-- Return method -->
+                <input type='hidden' name='rm' value='2'>
+                <!-- Return URL -->
+                <input type="hidden" name="return" value="http://localhost:3000">
+                <!-- Cancel Return URL -->
+                <input type="hidden" name="cancel_return" value="http://localhost:3000">
+
+                <!-- Button -->
+                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_107x26.png"
+                    name="submit" alt="Buy Now">
+            </form>
+        </div>
+
+
+
+        <%}%>
     </div>
-    
-    
-    
-    
-    </body>
+
+
+
+
+</body>
 
 
 
