@@ -4,6 +4,16 @@
 <head>
     <title>Home</title>
     <link src="/public/css" rel=stylesheet>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@700&family=Great+Vibes&family=Satisfy&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Satisfy&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -44,6 +54,31 @@
         .nav-item:hover {
             background-color: grey;
         }
+
+        #first {
+            margin-left: 70%;
+            margin-top: -3%;
+        }
+
+        h2 {
+            margin-left: 3%;
+            font-family: 'Dancing Script';
+
+        }
+
+        h1 {
+            font-family: 'Dancing Script';
+        }
+
+        #feedback {
+            font-family: 'great vibes';
+            font-size: 30px;
+        }
+
+        #details {
+            font-family: Cookie;
+            font-size: 30px;
+        }
     </style>
 </head>
 
@@ -67,24 +102,39 @@
         </form>
     </nav>
     <br><br>
+
     <div class="row">
         <div class=col-sm-6>
             <img src="<%=book.cover%>">
 
         </div>
         <div class="col-sm-6">
-            <p>Title:<%=book.title%>
+            <p><i>Title</i>:<span id="details">
+                    <%=book.title%>
+                </span>
+
+
             </p>
-            <p>Author:<%=book.author%>
+            <p><i>Author:</i><span id="details">
+                    <%=book.author%>
+                </span>
             </p>
-            <p>Category:<%=book.category%>
+            <p><i>Category:</i><span id="details">
+                    <%=book.category%>
+                </span>
             </p>
-            <p>Publisher:<%=book.publisher%>
+            <p><i>Publisher:</i><span id="details">
+                    <%=book.publisher%>
+                </span>
             </p>
 
-            <p>Description:<%=book.description%>
+            <p><i>Description:</i><span id="details">
+                    <%=book.description%>
+                </span>
             </p>
-            <p>Price:<%=book.price%>
+            <p><i>Price:</i><span id="details">
+                    <%=book.price%>
+                </span>
             </p>
 
 
@@ -97,30 +147,33 @@
     </div>
 
     <center>
+        <hr>
         <h1>CUSTOMER REVIEWS</h1>
     </center>
     <% if(review.length==0){%>
         <p>There are no reviews yet</p>
 
         <%}else{%>
-            <center>
-                <h2>Total Rating:
-                    <% for(var i=total; i>=1; i--) { %>
-                        <i class="fa fa-star" aria-hidden="true" style="font-size:48px"></i>
 
-                        <% } %>
-                            <% if(i<1 && i>0){%>
-                                <i class="fa fa-star-half-o" aria-hidden="true" style="font-size:48px"></i>
-                                <%}%>
-                                    <% for(var i=5-total; i>=1; i--) { %>
-                                        <i class="fa fa-star-o" aria-hidden="true" style="font-size:48px"></i>
+            <h2>Total Rating:
+                <% for(var i=total; i>=1; i--) { %>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size:48px"></i>
 
-                                        <% } %>
-                </h2>
-            </center>
+                    <% } %>
+                        <% if(i<1 && i>0){%>
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="font-size:48px"></i>
+                            <%}%>
+                                <% for(var i=5-total; i>=1; i--) { %>
+                                    <i class="fa fa-star-o" aria-hidden="true" style="font-size:48px"></i>
+
+                                    <% } %>
+
+            </h2>
+            <h2 id="first">Total Reviews: <%=review.length%>
+            </h2>
             <% for(var i=0; i < review.length; i++) { %>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" id="feedback">
                         <p>
                             <%=review[i].Firstname+" "  %><%=review[i].Lastname+', '%>
     <%=review[i].Country%></p>
@@ -166,11 +219,9 @@
                                                                 <%}%>
                         </p>
 
-                        <p>Description:<%=review[i].Description%>
+                        <p>Description: <%=review[i].Description%>
                         </p>
-                        <br>
                         <hr>
-                        <br>
                     </div>
                 </div>
                 <% } %>

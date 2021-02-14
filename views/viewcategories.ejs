@@ -49,6 +49,29 @@
       text-decoration: none;
 
     }
+
+    .btnrate {
+      padding: 8px 15px;
+      font-size: 15px;
+      width: 200px;
+      border-width: 0px;
+      background-color: rgb(88, 13, 207);
+      border-radius: 50px;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      display: flex;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      margin-left: 15%;
+
+    }
+
+    .btnrate:hover {
+      background-color: #0e219c;
+      box-shadow: 0 0 5 rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -70,15 +93,18 @@
 
 
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" action="/categorysearch2" method="post">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="category" aria-label="Search">
         <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
 
   <h2>Categories</h2>
-  <p id="add"><a href="addcate.ejs">Add a New Category</a></p>
+  <a href="addcate.ejs">
+    <button class="btnrate">Add a new Category</button>
+  </a>
+  <br>
 
   <table border="2 solid white">
 

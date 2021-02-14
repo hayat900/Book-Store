@@ -468,6 +468,55 @@ app.post('/categorysearchhome', function (req, res) {
         })
 
 })
+app.post('/categorysearchhome', function (req, res) {
+    var given_category = req.body.category;
+    book.find({
+        $or: [{ category: { $regex: new RegExp(given_category, "i") } }
+            , { title: { $regex: new RegExp(given_category, "i") } }
+            , { author: { $regex: new RegExp(given_category, "i") } }
+            , { publisher: { $regex: new RegExp(given_category, "i") } }
+        ]
+    }, function (err, books) {
+        console.log(books);
+        res.render("home.ejs", { books: books })
+
+    })
+        .catch(err => {
+            console.log("err");
+        })
+
+})
+app.post('/categorysearchhome', function (req, res) {
+    var given_category = req.body.category;
+    book.find({
+        $or: [{ category: { $regex: new RegExp(given_category, "i") } }
+            , { title: { $regex: new RegExp(given_category, "i") } }
+            , { author: { $regex: new RegExp(given_category, "i") } }
+            , { publisher: { $regex: new RegExp(given_category, "i") } }
+        ]
+    }, function (err, books) {
+        console.log(books);
+        res.render("home.ejs", { books: books })
+
+    })
+        .catch(err => {
+            console.log("err");
+        })
+
+})
+app.post('/categorysearch2', function (req, res) {
+    var given_category = req.body.category;
+    category.find({ type: { $regex: new RegExp(given_category, "i") } }, function (err, categories) {
+        console.log(categories);
+        res.render("viewcategories.ejs", { categories: categories })
+
+    })
+        .catch(err => {
+            console.log("err");
+        })
+
+})
+
 
 
 
